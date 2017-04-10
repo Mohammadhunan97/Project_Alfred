@@ -1,0 +1,87 @@
+body{
+/*	text-align: center;*/
+	background-color: #fafafa;
+/*	background-repeat: no-repeat;
+	background-size: 100vw 100vh;
+	background-position: 0% 0%;*/
+}
+.nav{
+	height: 100px;
+	width: 100vw;
+	background-color: #FFF;
+	color: #e74c3c;
+}
+.profile{
+	position: absolute;
+	top: 3vh;
+	right: 3vw;
+	height: 9vh;
+	width: 9vw;
+	border-radius: 100px;
+}
+.searcher{
+	margin-left: auto;
+	margin-right: auto;
+}
+.team{
+	position: absolute;
+	top: 3vh;
+	left:45vw;
+	font-size: 2.1em;
+	color: black;
+	font-family: 'Nova Flat', cursive;
+}
+.logo{
+	position: absolute;
+	top:4vh;
+	left: 5vw;
+	font-family: 'Nova Flat', cursive;
+	font-size: 3.7em;
+}
+.username{
+	position: absolute;
+	top: 15vh;
+	right: 2vw;
+	display: inline-block;
+}
+.forum{
+	display: inline-block;
+	border: 1px black solid;
+	position: absolute;
+	left: 15vw;
+	padding: 5px;
+}
+.posts{
+	position: absolute;
+	left: 15vw;
+	width: 70vw;
+	height: 600px;
+	background-color: #FFF;
+}
+
+@media only screen and (max-width: 425px) {
+	.team{
+		left: 41vw;
+	}
+	.profile{
+		width: 16vw;
+		top: 2vh;
+	}
+	.username{
+		top: 9vh;
+	}
+}
+@media only screen and (min-width: 425px) {
+	.logo{
+		top: -2vh;
+		font-size: 6.1em;
+	}
+
+}
+.users{
+	display: inline-block;
+}
+
+.titler{
+	text-align: center;
+}

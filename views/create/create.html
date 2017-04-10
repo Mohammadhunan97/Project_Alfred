@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create a Team</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="create.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="create.js"></script>
+
+</head>
+<body>
+	<div class="create">
+	   
+		<h1>Scope</h1>
+		<div class="changing">
+			<h2>Q & A style forum for your team</h2>
+		</div>
+
+		<div class="setupbox">
+			<form class="form-horizontal" method="POST" action="/create">
+			<div class="input_style">
+				<div class="login ">
+					Enter your username or email:<input class="form-control" type="text" name="teamname" value="google"/>
+					Password:<input class="form-control" type="text" name="teampass" value="password"/>
+				</div>
+
+
+				<div class="creating display_none">
+				<button class="tb">Team</button>
+				&nbsp;
+				<button class="tb">User</button>
+				<br/>
+				team name:<input class="form-control" type="text"name="teamname"/> 
+				admin email:<input class="form-control" type="text"name="teamname"/> 
+				admin password:<input class="form-control" type="text"name="teamname"/> 
+				<div class="checkbox">
+				Is this a private team?
+				<label><input type="checkbox" value="">Yes</label>
+				</div>
+				<div class="checkbox">
+				  <label><input type="checkbox" value="">No</label>
+				</div>
+			</div>
+
+
+			</div>
+
+
+			<input class="form-control button" type="submit"/>
+		</form>
+		<p class="switch">To create a new team or user account</p> <a class="clickhere">click here</a>
+		</div>
+	</div>
+</body>
+</html>

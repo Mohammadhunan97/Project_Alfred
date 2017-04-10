@@ -1,0 +1,27 @@
+{
+  "name": "alfred_teams",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohammadhunan97/Project_Alfred.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohammadhunan97/Project_Alfred/issues"
+  },
+  "homepage": "https://github.com/Mohammadhunan97/Project_Alfred#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "express-sessions": "^1.0.6",
+    "mustache-express": "^1.2.4",
+    "pg-promise": "^5.6.4"
+  }
+}

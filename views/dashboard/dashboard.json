@@ -1,0 +1,21 @@
+let myposts = [{
+"postid":1,
+"posttitle":"Foo",
+"postdescription":"foo foo",
+"posttags":"javascript,asp.net",
+"user":"moe.mkr"
+},
+{
+"postid":2,
+"posttitle":"Foh",
+"postdescription":"foh foh",
+"posttags":"php,asp.net",
+"user":"mkr.js"
+},
+{
+"postid":3,
+"posttitle":"bar",
+"postdescription":"bar bar",
+"posttags":"c++,adobe",
+"user":"jane.doe"
+	}]
