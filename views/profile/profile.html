@@ -13,26 +13,20 @@
 <body>
 	<nav>
 		<h1 class="logo">Scope</h1>
-		<h2 class="team">Teamname</h2>
-		<h2 class="dash">Dashboard</h2>
+<!-- 		<h2 class="team">Teamname</h2>
+		<h2 class="dash">Dashboard</h2> -->
 	</nav>
 
 	<section class="profile">
 		<img class="profilepic" src="https://www.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg"/>
-		<h3 class="username">@user.name</h3>
+		<h3 class="username">{{name}}</h3>
+		<form action="/update" method="POST">
+			<input type="text" name="name" placeholder="{{name}}"/>
+			<button type="submit">Update</button>
+		</form>
 	</section>
 
-	<section class="recentposts">
-		<post>
-			<h4 class="title">Sample post A </h4>
-			<p class="description">Lorem ipsum dolor sit amet, justo dictum et suspendisse nibh, diam amet cras ut posuere, sed id proin donec eros, luctus aliquam vestibulum sit. Suspendisse taciti metus sodales ducimus, augue vestibulum massa tincidunt. Eu fusce sed id in, elit ipsum vivamus commodo. Magna lacinia est suspendisse, enim quisque elit inceptos amet, id nullam natoque elementum tellus, rutrum rutrum suspendisse morbi dolor</p>
-		</post>
 
-		<post>
-			<h4 class="title">Sample post B </h4>
-			<p class="description">Lorem ipsum dolor sit amet, in semper lacinia id, nonummy molestie molestie ullamcorper justo, nullam esse a adipiscing. Volutpat sapien tincidunt magna, accumsan proin ut turpis. Amet mauris faucibus et laborum, proin varius orci ultrices vivamus. Suspendisse iaculis magna id quis, donec wisi proin felis natoque, amet luctus sit ultrices. Wisi integer vehicula sapien mauris, et proin dictum fringilla proin, ipsum wisi justo varius vestibulum.
-			</p>
-		</post>
 	</section>
 	<section class="meetup">
 		<br/>
@@ -42,7 +36,36 @@
 		<br/>
 
 	</section>
+<script>
+const key = '5a153a3a715b2a392514701a2547b80';
+const c = console.log;
+$(document).ready(function(){
+	c(key);
+	c("profile.js is available");
+	$.ajax({url: "https://api.meetup.com/find/events?key="+key+"&sign=true&query=sanfrancisco&photo-host=public&text=web+dev&page=20&/locations?", 
+		success: function(result){
+		c(result[0]);
+		for(let i = 0; i < 3; i++){
+        let link = result[i].link;
+        let name = result[i].name;
+         let meetup = document.getElementsByClassName('meetup')[0];
 
+         meetup.innerHTML += '<div class="meet"><p>'+name+'</p><a href="'+link+'">See more on Meetup.com</a></div><br/>'
+        }
+        
+     
+
+    },
+    error: function(result){
+    		console.log('error');
+    		$('.errormessage').text('Sorry, your meetups could not load at this time');
+
+    	}
+	});
+    	
+});
+
+</script>
 
 </body>
 </html>

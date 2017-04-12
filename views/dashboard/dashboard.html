@@ -7,57 +7,91 @@
 	<link rel="stylesheet" href="dashboard.css"/>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
-	<script src="dashboard.json"></script>
-	<script src="dashboard.js"></script>
 </head>
 <body>
 
 	<div class="nav">
 		<p class="logo">Scope</p>
 		<p class="team">{{teamname}}</p>
-		<div class="users"> 
-		<!-- 	<img class="profile" src="assets/sampleprofile.jpg" alt="user image"/> -->
-			
-			<h4 class="username">{{user.username}}</h4>
-			
-		</div>
+		<p class="username"><a href="/user/{{user.username}}">{{user.username}}</a></p>
 	</div>
 
 	<br/>
 	<br/>
 	<br/>
-	<form class="form-horizontal" method="POST" action="/dashboard">
+	<form class="form-horizontal" method="POST">
 		<p> New Post </p>
-		<input type="text" class="form-control" name="new_post"/>
-		<button type="button" class="sub">submit</button>
-	<div class="posts">
-
-		<p class="latest"></p>
-		<p class="new"></p>
-	</div>
+		<input id="valler" type="text" class="form-control" name="new_post" placeholder="title"/>
+		<input id="valler2" type="text" class="form-control" name="description" placeholder="description"/>
+		<input id="valler3" name="team" style="display:none" placeholder=''/>
+		<button type="button"></button>
 	</form>
+
+
+		
+
+	<div id="posts">
+		
+	</div>
+		
      
 <script>
-
+const c = console.log;
+let posts = document.getElementById('posts');
+let inp = document.getElementById('valler');
+let inp2 = document.getElementById('valler2');
+let inp3 = document.getElementById('valler2');
+let form = document.getElementsByTagName('form')[0];
+let button = document.getElementsByTagName('button')[0];
+let h2 = document.getElementsByTagName('h2');
+let team = document.getElementById('valler3').placeholder;
+let z = Number({{teamid}});
+c(z);
+window.onload = function(){
 	$.ajax(
-			{url: "/posts", success: function(result){
-         		 console.log(result);
-         		// console.log(result[0].posttitle);
-         		for(let i = result.length -1; i >= 0; i--){
-         			console.log(result[i].posttitle);
+		{url: "/posts",
+		 success: function(result){
+		 	for(let a = result.length - 1; a >= 0 ; a--){
+		 		if((result[a].r_teamid == z)){ //double equals on purpose 
+		 		posts.innerHTML += '<h2 style="background:#eee">'+result[a].posttitle + `<button class='${result[a].postid}'>X</button></h2>`+'<h4 style="background:#fafafa"> description:'+result[a].postdescription + '</h4>';
+		 		   
+		 		}
+		 	}//end of for
 
-         			$('.new').append(result[i].posttitle + '<br/>');
-         		}
-         	} //end of success
-            }); 
- 
-	$('.sub').click(function(){
-		console.log($('.form-control').val());
-			$("<p>"+$('.form-control').val()+"</p>").insertAfter(".latest");
-			setTimeout(function(){
-				$('form').submit();
-			},2000);			
+		 }
+	});
+}	
+$(document).on('click', 'button', aj);
+function aj(a,b){
+	c(a.target.className);
+	c('foobar');
+	
+	$.ajax({
+			  type: "POST",
+			  url: "/del",
+			  data: {
+			  	postid: a.target.className
+			  }  
+			}); //end of ajax call
+
+}
+
+
+	
+	button.addEventListener('click',function(){
+
+		c(inp.value + ' foooz');
+			$.ajax({
+			  type: "POST",
+			  url: "/dashboard",
+			  data: {new_post:inp.value,
+			  	descrip: inp2.value,
+			  	team: z
+			  },  
+			}); //end of outer ajax call
 	})
+
+
 
 </script>
 
