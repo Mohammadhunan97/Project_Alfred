@@ -1,0 +1,75 @@
+body{
+	background: #FFF;
+}
+nav{
+	background: #ecf0f1;
+	width: 100vw;
+}
+
+.logo,.team,.dash{
+	display: inline-block;
+	margin-left: 3vw;
+	margin-right: 8vw;
+}
+
+.logo{
+	color: #e74c3c;
+	font-size: 5vw;
+	font-family: 'Nova Flat', cursive;
+	position: relative;
+	left: 8vw;
+}
+
+.team{
+	font-size: 4vw;
+	position: relative;
+	right: -10vw;
+}
+.dash{
+	position: relative;
+	right: -12vw;
+	font-size: 4vw;
+}
+.profile{
+	background: #FFF;
+	width: 100vw;
+	height: 50vh;
+}
+.profilepic{
+	margin: 3vh 0vw 0vh 30vw;
+	width: 40vw;
+	height: 35vh;
+}
+.username{
+	text-align: center;
+}
+.recentposts{
+	/*height: 20vh;
+*/	background: #FFF;
+}
+post{
+	text-align: justify;
+}
+.title{
+	margin-left: 3vw;
+}
+.description{
+	margin: 0 2vw 0 2vw;
+}
+.meetup{
+	height: 40vh;
+	background: #FFF;	
+}
+.recommended{
+	text-align: center;
+}
+.errormessage{
+	text-align: center;
+}
+.meet{
+	background: #EEE;
+	display: inline-block;
+	margin-left: 35vw;
+	width: 30vw;
+	margin-bottom: 5vh;
+}

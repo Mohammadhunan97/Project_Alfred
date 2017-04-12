@@ -11,20 +11,55 @@
 	<script src="dashboard.js"></script>
 </head>
 <body>
+
 	<div class="nav">
 		<p class="logo">Scope</p>
-		<p class="team">GA</p>
-		<div class="users">
-			<img class="profile" src="assets/sampleprofile.jpg" alt="user image"/>
-			<h4 class="username">Moe.mkr</h4>
+		<p class="team">{{teamname}}</p>
+		<div class="users"> 
+		<!-- 	<img class="profile" src="assets/sampleprofile.jpg" alt="user image"/> -->
+			
+			<h4 class="username">{{user.username}}</h4>
+			
 		</div>
 	</div>
 
 	<br/>
 	<br/>
 	<br/>
+	<form class="form-horizontal" method="POST" action="/dashboard">
+		<p> New Post </p>
+		<input type="text" class="form-control" name="new_post"/>
+		<button type="button" class="sub">submit</button>
+	<div class="posts">
 
-	<div class="posts"></div>
+		<p class="latest"></p>
+		<p class="new"></p>
+	</div>
+	</form>
+     
+<script>
+
+	$.ajax(
+			{url: "/posts", success: function(result){
+         		 console.log(result);
+         		// console.log(result[0].posttitle);
+         		for(let i = result.length -1; i >= 0; i--){
+         			console.log(result[i].posttitle);
+
+         			$('.new').append(result[i].posttitle + '<br/>');
+         		}
+         	} //end of success
+            }); 
+ 
+	$('.sub').click(function(){
+		console.log($('.form-control').val());
+			$("<p>"+$('.form-control').val()+"</p>").insertAfter(".latest");
+			setTimeout(function(){
+				$('form').submit();
+			},2000);			
+	})
+
+</script>
 
 </body>
 </html>

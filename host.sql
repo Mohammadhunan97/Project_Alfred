@@ -19,8 +19,8 @@ teamkey TEXT
 CREATE TABLE users(
 userid SERIAL PRIMARY KEY,
 username VARCHAR(20) NOT NULL,
-useremail VARCHAR(25) NOT NULL,
-userpass TEXT NOT NULL,
+useremail VARCHAR(25),
+userpass TEXT,
 usertitle VARCHAR(25),
 userdescription TEXT,
 userimage TEXT,

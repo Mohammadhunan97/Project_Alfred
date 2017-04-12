@@ -26,7 +26,7 @@ VALUES(
 'password',
 'Software Developer',
 'software dev in sf',
-1
+2
 );
 
 INSERT INTO posts(posttitle,postdescription,posttags,r_teamid,r_userid)

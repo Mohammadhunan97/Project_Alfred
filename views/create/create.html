@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Create a Team</title>
+	<title>Home</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="create.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="create.js"></script>
+	<script src="createnew.js"></script>
+	<link rel="stylesheet" href="create.css"/>
 
 </head>
 <body>
@@ -18,40 +18,61 @@
 			<h2>Q & A style forum for your team</h2>
 		</div>
 
-		<div class="setupbox">
-			<form class="form-horizontal" method="POST" action="/create">
-			<div class="input_style">
-				<div class="login ">
-					Enter your username or email:<input class="form-control" type="text" name="teamname" value="google"/>
-					Password:<input class="form-control" type="text" name="teampass" value="password"/>
-				</div>
+	
+<!-- *** LOGIN ** -->
 
-
-				<div class="creating display_none">
-				<button class="tb">Team</button>
-				&nbsp;
-				<button class="tb">User</button>
-				<br/>
-				team name:<input class="form-control" type="text"name="teamname"/> 
-				admin email:<input class="form-control" type="text"name="teamname"/> 
-				admin password:<input class="form-control" type="text"name="teamname"/> 
-				<div class="checkbox">
-				Is this a private team?
-				<label><input type="checkbox" value="">Yes</label>
-				</div>
-				<div class="checkbox">
-				  <label><input type="checkbox" value="">No</label>
-				</div>
-			</div>
-
-
-			</div>
-
-
-			<input class="form-control button" type="submit"/>
+	<section class="login">
+		<form class="form-horizontal" method="POST" action="/new1">
+			<h3 class="login_b">Login</h3>&nbsp;<h3 class="signup_b">Sign Up</h3>
+			<p>Enter your username</p><input class="form-control" type="text" name="login_user_or_team_or_email"/>
+			<p>Enter your password</p><input class="form-control" type="text" name="login_password"/>
+			<input class="form-control" type="submit"/>
 		</form>
-		<p class="switch">To create a new team or user account</p> <a class="clickhere">click here</a>
-		</div>
+	</section>	
+
+
+		
+<!-- *** Signup teams ** -->  
+	<section class="create_team">
+		<form class="form-horizontal" method="POST" action="/new2">
+			<h3 class="login_b">Login</h3>&nbsp;<h3 class="signup_b">Sign Up</h3>
+			<p>Create a :</p> <button><p class="team_b">Team</p></button> <button>&nbsp;<p class="user_b"> User</p></button>
+			<br/>
+			<p>Team Name:</p><input class="form-control" type="text" name="create_teamname_team"/>
+			<p>Admin Email:</p><input class="form-control" type="text" name="create_teamname"/>
+			<p>Admin Password:</p><input class="form-control" type="text" name="create_teampass"/>
+			<div class="checkbox">
+				<p>Is this a private team?</p>
+				<label><input class="yes" type="checkbox">Yes</label>
+				<label><input class="no" type="checkbox">No</label>
+			</div>
+			<p>Create a teamkey (share this key only with team members):</p><input class="form-control" type="text" name="teamkey"/>
+			<input class="form-control" type="submit"/>
+		</form>
+	</section>
+
+<!-- *** Create a User *** -->
+	<section class="create_user">
+		<form class="form-horizontal" method="POST" action="/new3">
+			<h3 class="login_b">Login</h3> &nbsp; <h3 class="signup_b">Sign Up</h3>
+			<p>Create a :</p> <button><p class="team_b">Team</p></button><button> &nbsp; <p class="user_b">User</p></button>
+			<br/>
+			<p>Team Name:</p><input class="form-control" type="text" name="create_teamname_user"/>
+			<p>Team Key (if your team is private):</p><input class="form-control" type="text" name="teamkey_user"/>
+			<p>Email:</p><input class="form-control" type="text" name="user_email"/>
+			<p>User Name:</p><input class="form-control" type="text" name="create_username"/>
+			<p>Password:</p><input class="form-control" type="text" name="user_pass"/>
+			<input class="form-control" type="submit"/>
+		</form>
+	</section>
+
+
+<script>
+	$('button').click(function(ev){
+		ev.preventDefault();
+	})
+</script>
+
 	</div>
 </body>
 </html>
