@@ -5,6 +5,10 @@ nav{
 	background: #ecf0f1;
 	width: 100vw;
 }
+img{
+	width: 30vw;
+	height: 20vh;
+}
 
 .logo,.team,.dash{
 	display: inline-block;

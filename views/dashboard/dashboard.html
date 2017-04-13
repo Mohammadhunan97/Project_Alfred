@@ -59,6 +59,7 @@ window.onload = function(){
 		 	}//end of for
 
 		 }
+		 
 	});
 }	
 $(document).on('click', 'button', aj);
@@ -73,6 +74,7 @@ function aj(a,b){
 			  	postid: a.target.className
 			  }  
 			}); //end of ajax call
+	window.location = "/";
 
 }
 
@@ -89,6 +91,8 @@ function aj(a,b){
 			  	team: z
 			  },  
 			}); //end of outer ajax call
+
+			window.location = "/";
 	})
 
 

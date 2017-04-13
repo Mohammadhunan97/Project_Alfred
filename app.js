@@ -5,6 +5,10 @@ const mustacheExpress = require('mustache-express');
 const bodyParser = require("body-parser");
 const session = require('express-session');
 const c = console.log;
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
 
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
@@ -60,7 +64,8 @@ app.post('/del',function(req,res){
 	c(req.body);
 	let postid = Number(req.body.postid);
 	c(postid);
-	db.none("DELETE FROM posts WHERE postid = '" + postid + "'");
+	// db.none("DELETE FROM posts WHERE postid = '" + postid + "'");
+	db.none("DELETE FROM posts WHERE postid = $1;",[postid]);
 })
 
 
@@ -84,7 +89,10 @@ app.post('/new1',function(req,res){
 						})
 		 				app.post("/update",function(req,res){
 						c(req.body);
-						db.one(`UPDATE users SET username = '${req.body.name}' WHERE username = '${req.session.user}'`);
+						res.redirect("/user/"+req.body.name);
+								c('testerr')
+						//db.one(`UPDATE users SET username = '${req.body.name}' WHERE username = '${req.session.user}'`);
+						db.one(`UPDATE users SET username = $1 WHERE username = '${req.session.user}'`,[req.body.name]);
 						})
 		 			setTimeout(function(){
 		 				res.redirect('/');
@@ -96,36 +104,49 @@ app.post('/new1',function(req,res){
 //update user:
 
 
-
-
-
-
-
 // ****************LOGIN ^^^ ********* //
 app.post('/new2',function(req,res){
 	let foo2 = req.body;
 	c(foo2);
-	db.one(`INSERT INTO TEAMS(teamname,teamemail,teampass,teamkey)VALUES('${foo2.create_teamname_team}','${foo2.create_teamname}','${foo2.create_teampass}','${foo2.teamkey}')`);
+	// db.one(`INSERT INTO TEAMS(teamname,teamemail,teampass,teamkey)VALUES('${foo2.create_teamname_team}','${foo2.create_teamname}','${foo2.create_teampass}','${foo2.teamkey}')`);
+		db.one(`INSERT INTO TEAMS(teamname,teamemail,teampass,teamkey)VALUES("$1,$2,$3,$4",[foo2.create_teamname_team],[foo2.create_teamname],[foo2.create_teampass],[foo2.teamkey]);
+
+
+			// ${foo2.create_teamname_team}','${foo2.create_teamname}','${foo2.create_teampass}','${foo2.teamkey}')`);
 
 })
 app.post('/new3',function(req,res){
 	let foo3 = req.body;
 	c(foo3 );
 	c('foo3');
-	db.any(`SELECT teamid FROM teams WHERE teamname = '${foo3.create_teamname_user}'`).then(function(result){
+	// db.any(`SELECT teamid FROM teams WHERE teamname = '${foo3.create_teamname_user}'`).then(function(result){
+
+	db.any(`SELECT teamid FROM teams WHERE teamname = $1`,[foo3.create_teamname_user]).then(function(result){	
 		var team = result[0].teamid;
 		c(team);
-		 db.one(`INSERT INTO users(username,useremail,userpass,r_teamid)VALUES('${foo3.create_username}','${foo3.user_email}','${foo3.user_pass}',${team})`);
+		 // db.one(`INSERT INTO users(username,useremail,userpass,r_teamid)VALUES('${foo3.create_username}','${foo3.user_email}','${foo3.user_pass}',${team})`);
+		  db.none(`INSERT INTO users(username,useremail,userpass,r_teamid) VALUES ($1,$2,$3,$4`,[foo3.create_username],[foo3.user_email],[foo3.user_pass],[result[0].teamid])`);
+
+
+		  //.none(
+          //"INSERT INTO horses (name, person_id) VALUES ($1, $2);", [data.name, req.session.user.id]
+          //)
+		  // db.one(`INSERT INTO TEAMS(teamname,teamemail,teampass,teamkey)VALUES("$1,$2,$3,$4",[foo2.create_teamname_team],[foo2.create_teamname],[foo2.create_teampass],[foo2.teamkey]);	
+
+		  	// '${foo3.create_username}','${foo3.user_email}','${foo3.user_pass}',${team})`);
 	})
 
 	
-})
+})zz
 
 //inside dashboard:: \/
 app.post('/dashboard',function(req,res){
 	let foo4 = req.body;
 	// db.one("INSERT INTO posts(posttitle,r_teamid)VALUES($1,$3)",[foo4.new_post][foo4.team]);
-	db.one(`INSERT INTO posts(posttitle,postdescription,r_teamid)VALUES('${foo4.new_post}','${foo4.descrip}',${foo4.team})`);
+	db.one(`INSERT INTO posts(posttitle,postdescription,r_teamid)VALUES('${foo4.new_post}','${foo4.descrip}',${foo4.team})`).then(function(){
+		// res.redirect('/dashboard');
+	})
+
 })
 
 app.listen(4000);
