@@ -13,7 +13,7 @@
 	<div class="nav">
 		<p class="logo">Scope</p>
 		<p class="team">{{teamname}}</p>
-		<p class="username"><a href="/user/{{user.username}}">{{user.username}}</a></p>
+		<p class="username"><a href="/user/{{username}}">{{username}}</a></p>
 	</div>
 
 	<br/>
@@ -62,37 +62,39 @@ window.onload = function(){
 		 
 	});
 }	
+
 $(document).on('click', 'button', aj);
+
 function aj(a,b){
 	c(a.target.className);
 	c('foobar');
-	
+	let e = Number(a.target.className);
 	$.ajax({
 			  type: "POST",
 			  url: "/del",
 			  data: {
-			  	postid: a.target.className
+			  	postid: e
 			  }  
 			}); //end of ajax call
-	window.location = "/";
-
+	window.location = "/dash";
 }
 
 
-	
+		
 	button.addEventListener('click',function(){
 
 		c(inp.value + ' foooz');
 			$.ajax({
 			  type: "POST",
 			  url: "/dashboard",
-			  data: {new_post:inp.value,
+			  data: {
+			  	new_post:inp.value,
 			  	descrip: inp2.value,
 			  	team: z
 			  },  
 			}); //end of outer ajax call
 
-			window.location = "/";
+			window.location = "/dash";
 	})
 
 
