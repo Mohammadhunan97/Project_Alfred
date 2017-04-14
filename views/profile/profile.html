@@ -93,6 +93,9 @@ post{
 	width: 30vw;
 	margin-bottom: 5vh;
 }
+input,title{
+	text-align: center;
+}
 	</style>
 </head>
 <body>
@@ -116,6 +119,7 @@ post{
 	<section class="meetup">
 		<br/>
 		<br/>
+		<h1 class="title">{{title}}</h1>
 		<h2 class="recommended">Your recommended Meetups </h2>
 		<p class="errormessage"></p>
 		<br/>
@@ -126,8 +130,12 @@ const key = '5a153a3a715b2a392514701a2547b80';
 const c = console.log;
 $(document).ready(function(){
 	c(key);
+
+	let title = $('.title').text();
+	c(title);
+
 	c("profile.js is available");
-	$.ajax({url: "https://api.meetup.com/find/events?key="+key+"&sign=true&query=sanfrancisco&photo-host=public&text=web+dev&page=20&/locations?", 
+	$.ajax({url: "https://api.meetup.com/find/events?key="+key+"&sign=true&query=sanfrancisco&photo-host=public&text="+title+"&page=20&/locations?", 
 		success: function(result){
 		c(result[0]);
 		for(let i = 0; i < 3; i++){

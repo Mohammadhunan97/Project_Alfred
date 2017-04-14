@@ -98,13 +98,20 @@ app.post('/new1',function(req,res){
 
 		 			 app.get('/user/:id',function(req,res){
 						 let id = req.params.id;
-						
-						 let obj = {
-						 	name: id
+						db.any(`SELECT usertitle FROM users WHERE username = '${req.session.user}'`).then(function(data){
+							c(data);
+							 let obj = {
+						 	name: id,
+						 	title: data[0].usertitle
+
 						 }
 
 						 res.render('profile/profile',obj);
 						 })
+
+
+						})
+						
 		 			 	app.post("/update",function(req,res){
 						// c(req.body);
 						 res.redirect("/user/"+req.body.name);
@@ -180,7 +187,7 @@ bcrypt.hash(foo3.user_pass,saltRounds, function(err, hash) {
 		c(team);
 
 		 // db.one(`INSERT INTO users(username,useremail,userpass,r_teamid)VALUES('${foo3.create_username}','${foo3.user_email}','${foo3.user_pass}',${team})`);
-		  db.none("INSERT INTO users(username,useremail,userpass,r_teamid) VALUES ($1,$2,$3,$4)",[foo3.create_username,foo3.user_email,hash,result[0].teamid]);
+		  db.none("INSERT INTO users(username,useremail,userpass,usertitle,r_teamid) VALUES ($1,$2,$3,$4,$5)",[foo3.create_username,foo3.user_email,hash,foo3.usertitle,result[0].teamid]);
 	})
 });
 	
